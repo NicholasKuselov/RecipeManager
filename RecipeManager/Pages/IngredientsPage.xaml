@@ -1,0 +1,75 @@
+﻿<Page x:Class="RecipeManager.Pages.IngredientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RecipeManager.Pages" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels" xmlns:converters="clr-namespace:RecipeManager.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="IngredientsPage">
+
+    <Page.DataContext>
+        <viewmodels:IngredientsPageVM></viewmodels:IngredientsPageVM>
+    </Page.DataContext>
+
+    <Grid Background="{DynamicResource Color_MainWindow}">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+
+        <!--<Grid Grid.Row="0" Background="{DynamicResource Color_lb_buttonBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+
+        </Grid>-->
+
+
+        <Grid Grid.Row="1" Name="Grid" Focusable="True" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="90"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" >
+                <Image Height="30" Width="30" Source="search.png"/>
+                <TextBox Grid.Row="1" Style="{DynamicResource SearchTextBoxStyle}"  Text="{Binding SearchText}" Width="400" TextChanged="SearchTextBox_TextChanged"/>
+            </StackPanel>
+
+            <ListBox Grid.Row="1" Grid.Column="0" SelectedItem="{Binding SelectedIngredient}" Background="{DynamicResource Color_DaysColumnsBackground}" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsCreatingListBox}"  BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            </ListBox>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.Resources>
+
+                        <converters:PriceConverter x:Key="PriceConverter"/>
+
+
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource Ingradient}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  Style="{DynamicResource NameTextBox}" Text="{Binding IngName}"/>
+                <Button Grid.Row="1" Grid.Column="2" Command="{Binding DeleteIngredient}" Template="{DynamicResource DeleteIngredientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource IngPrice}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource NameTextBox}" HorizontalAlignment="Stretch" Text="{Binding IngPrice, Converter={StaticResource PriceConverter}}" TextChanged="TextBox_TextChanged" Name="tb_IngWeigth"/>
+                <Button Grid.Row="0" Grid.Column="2" Template="{DynamicResource AddIngredientButton}" FontSize="16" Command="{Binding AddIngredient}" Width="200" Height="40" HorizontalAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Page>

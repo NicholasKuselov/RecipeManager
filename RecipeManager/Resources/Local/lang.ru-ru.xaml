@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <v:String x:Key="ProgramName">Recipe Manager</v:String>
+    <v:String x:Key="ProgramNameLocal">Менеджер рецептів</v:String>
+
+    <!--RecipeCreatePage page-->
+    <v:String x:Key="bCalc">Калькулятор</v:String>
+    <v:String x:Key="bRecipeCreate">Створення рецепту</v:String>
+    <v:String x:Key="bRecipes">Рецепти</v:String>
+
+
+    <v:String x:Key="IngWeigth">Вага (г) :</v:String>
+    <v:String x:Key="IngName">Найменування :</v:String>
+
+    <v:String x:Key="Ingradients">Інградієнти</v:String>
+    <v:String x:Key="Recipes">Рецепти</v:String>
+
+
+    <v:String x:Key="bAddIngredient">Додати інградієнт</v:String>
+    <v:String x:Key="bAddRecipe">Додати рецепт</v:String>
+    <v:String x:Key="RecipeName">Найменування рецепту</v:String>
+    <v:String x:Key="RecipeWeigth">Вага на виході (г) :</v:String>
+
+    <v:String x:Key="CalcWeigth">Розрахунок для ваги (г) :</v:String>
+
+    <v:String x:Key="SelectRecipe">Оберіть рецепт</v:String>
+    <v:String x:Key="DeleteSelectedIngredient">Видалити обраний інградієнт</v:String>
+
+    <v:String x:Key="EnterSearchRequest">Введіть текст для пошуку...</v:String>
+
+
+
+    <!--EntryWindow-->
+    <v:String x:Key="bAuth">Війти</v:String>
+    <v:String x:Key="bForgotPass">Забули пароль?</v:String>
+    <v:String x:Key="lPassword">Пароль</v:String>
+    <v:String x:Key="lPasswordDouble">Повторіть пароль</v:String>
+    <v:String x:Key="lLogin">Логін</v:String>
+    <v:String x:Key="lAuth">Авторизація</v:String>
+    <v:String x:Key="lName">Ім'я</v:String>
+    <v:String x:Key="ProgramNameSecondary">Система електронного розкладу ЛНУ ім. Тараса Шевченка</v:String>
+
+    <!-- UserSettingsWindow-->
+    <v:String x:Key="bExit">Вихід</v:String>
+    <v:String x:Key="bAddNewUser">Додати користувача</v:String>
+    <v:String x:Key="bChangePassword">Змінити пароль</v:String>
+
+    <!--Warnings-->
+    <v:String x:Key="DeleteCaption">Видалення</v:String>
+    <v:String x:Key="DeleteRecipe">Дійсно видалити рецепт :</v:String>
+
+    <!--Errors-->
+    <v:String x:Key="ErrorCaption">Помилка</v:String>
+
+    <v:String x:Key="AuthFailcaption">Авторизація</v:String>
+    <v:String x:Key="AuthFailText">Невірний пароль або логін!</v:String>
+    <v:String x:Key="NewPasswordscaption">Зміна паролю</v:String>
+    <v:String x:Key="NewPasswordsNotEqualsText">Введені паролі не співпадають!</v:String>
+    <v:String x:Key="NewPasswordsFieldsIsClearText">Не введене поле паролю</v:String>
+    <v:String x:Key="NewUsercaption">Зміна паролю</v:String>
+    <v:String x:Key="NewUserFieldsClearText">Введені паролі не співпадають!</v:String>
+    <v:String x:Key="NewUserLoginAlreadyRegisterText">Введені паролі не співпадають!</v:String>
+    <v:String x:Key="ErrorNoRecipeName">Введіть назву рецепту!</v:String>
+    <v:String x:Key="ErrorNoIngredientName">Введіть назву інградієнту!</v:String>
+    <v:String x:Key="ErrorNoRecipeWeigth">Введіть вагу рецепту!</v:String>
+    <v:String x:Key="ErrorNoIngredientWeigth">Введіть вагу інградієнту!</v:String>
+
+
+
+</ResourceDictionary>

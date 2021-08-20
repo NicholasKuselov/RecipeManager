@@ -1,0 +1,115 @@
+﻿<Page x:Class="RecipeManager.Pages.RecipeCreatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RecipeManager.Pages" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RecipeCreatePage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewmodels:RecipeCreatePageVM></viewmodels:RecipeCreatePageVM>
+    </Page.DataContext>
+
+    <Grid Background="{DynamicResource Color_MainWindow}">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+
+        <!--<Grid Grid.Row="0" Background="{DynamicResource Color_lb_buttonBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+
+        </Grid>-->
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical"  Grid.Row="0" Grid.Column="1">
+                <Label Content="{DynamicResource RecipeName}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Style="{DynamicResource NameTextBox}" HorizontalAlignment="Center" Text="{Binding RecipeName}" Width="200"/>
+                <Label Content="{DynamicResource RecipeWeigth}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Style="{DynamicResource NameTextBox}" HorizontalAlignment="Center" Text="{Binding RecipeWeigth}" Width="200" TextChanged="TextBox_TextChanged"/>
+                <Label Content="{DynamicResource RecipeTag}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Style="{DynamicResource NameTextBox}" HorizontalAlignment="Center" Text="{Binding RecipeTag}" Width="200"/>
+
+            </StackPanel>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Command="{Binding AddRecipe}" Template="{DynamicResource AddRecipeButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
+                <Button Grid.Row="1" Command="{Binding DeleteIngredient}" Template="{DynamicResource DeleteIngredientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
+
+            </Grid>
+            <Grid Grid.Row="0" Background="{DynamicResource Color_DaysColumnsBackground}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource Ingradients}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="{DynamicResource Recipes}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+
+                <ListBox Grid.Row="1" Grid.Column="0" SelectedItem="{Binding SelectedIngredient}" Background="{DynamicResource Color_DaysColumnsBackground}" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsListBox}"  BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                </ListBox>
+
+                <ListBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding SelectedRecipe}" Background="{DynamicResource Color_DaysColumnsBackground}" HorizontalAlignment="Stretch" ItemsSource="{Binding InnerRecipes}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource InnerRecipesListBox}"  BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                </ListBox>
+            </Grid>
+            
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource IngName}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                <!--<TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  Style="{DynamicResource NameTextBox}" Text="{Binding IngName}"/>-->
+                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AllIngredientsNames}" SelectedItem="{Binding SelectedIngredientName}" Margin="10,0,10,0" SelectedIndex="0" Style="{DynamicResource comboBoxStyle}" HorizontalContentAlignment="Stretch" VerticalContentAlignment ="Center" VerticalAlignment="Center" Background="Transparent" Height="30"/>
+
+
+                <Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource IngWeigth}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource NameTextBox}" HorizontalAlignment="Stretch" Text="{Binding IngWeigth}" TextChanged="TextBox_TextChanged" Name="tb_IngWeigth"/>
+                <Button Grid.Row="0" Grid.Column="2" Template="{DynamicResource AddIngredientButton}" FontSize="16" Command="{Binding AddIngredient}" Width="200" Height="30" HorizontalAlignment="Center"/>
+                <Button Grid.Row="1" Grid.Column="2" Template="{DynamicResource AddInnerRecipeButton}" FontSize="16" Command="{Binding bAddInnerRecipe}" Width="200" Height="30" HorizontalAlignment="Center"/>
+
+            </Grid>
+            
+        </Grid>
+    </Grid>
+</Page>

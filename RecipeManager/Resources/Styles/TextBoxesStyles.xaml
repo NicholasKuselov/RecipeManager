@@ -1,0 +1,257 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RecipeManager.Resources.Styles">
+    <Style TargetType="TextBox" x:Key="WeigthTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="5,0,5,0"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="NameTextBox" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="5,0,5,0"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SearchTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource EnterSearchRequest}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="Text" Value="0">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="0.0">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="TextBox" x:Key="PriceTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource Price}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="Text" Value="0">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="0.0">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="ThresholdTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource Float}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SteamOverlayUrlTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource SteamOverlayURL}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SteamInventoryUrlTextBoxStyle" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource SteamInventoryURL}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SIH_Page" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource MCSIHPage}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="ScinUrlForFloatRange" >
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Margin" Value="10,0,10,0"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="{DynamicResource SteamOverlayURL}" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

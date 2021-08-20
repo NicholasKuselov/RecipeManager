@@ -1,0 +1,38 @@
+[
+	{
+		"Name": "рецепт 1",
+		"Weigth": 2000,
+		"Ingredients": [
+			{
+				"Weigth": 1000,
+				"id": 2
+			}
+		],
+		"InnerRecipes": [],
+		"Tag": "торт"
+	},
+	{
+		"Name": "рецепт 2",
+		"Weigth": 2000,
+		"Ingredients": [
+			{
+				"Weigth": 1000,
+				"id": 2
+			}
+		],
+		"InnerRecipes": [],
+		"Tag": "крем"
+	},
+	{
+		"Name": "aasdUpdated",
+		"Weigth": 123123,
+		"Ingredients": [
+			{
+				"Weigth": 123,
+				"id": 2
+			}
+		],
+		"InnerRecipes": [],
+		"Tag": "ff"
+	}
+]

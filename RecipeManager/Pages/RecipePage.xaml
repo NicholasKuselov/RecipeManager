@@ -1,0 +1,37 @@
+﻿<Page x:Class="RecipeManager.Pages.RecipePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RecipeManager.Pages" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RecipePage">
+
+    <Page.DataContext>
+        <viewmodels:RecipePageVM></viewmodels:RecipePageVM>
+    </Page.DataContext>
+    
+    <Grid Background="{DynamicResource Color_WeekListPanel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        
+        <Label Name="lCaption" Grid.Row="0" Background="{DynamicResource Color_DaysColumnsBackground}" Content="{DynamicResource Recipes}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" FontSize="18" Focusable="True"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Image Height="30" Width="30" Source="search.png"/>
+            <TextBox Grid.Row="1" Style="{DynamicResource SearchTextBoxStyle}"  Text="{Binding SearchText}" Width="400" TextChanged="TextBox_TextChanged"/>
+            <ComboBox Grid.Row="0" ItemsSource="{Binding Tags}" SelectedItem="{Binding SelectedTag}" Margin="10,0,10,0" SelectedIndex="0" Style="{DynamicResource comboBoxStyle}" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment ="Center" VerticalAlignment="Center" Background="Transparent" Height="30"/>
+
+
+        </StackPanel>
+        
+        <ListBox Grid.Row="2" HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedRecipe}" ItemsSource="{Binding Recipes}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource RecipesListBox}" Background="{DynamicResource Color_DaysColumnsBackground}" BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+        </ListBox>
+    </Grid>
+</Page>

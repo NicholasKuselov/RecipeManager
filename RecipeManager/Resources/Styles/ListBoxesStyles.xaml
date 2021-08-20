@@ -1,0 +1,546 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:converters="clr-namespace:RecipeManager.Converters">
+    <Style x:Key="IngradientsListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngWeigth}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Weigth}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngName}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Name}" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="SellsListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate.Resources>
+                        <converters:RecipeNameConverter x:Key="RecipeNameConverter"/>
+                        <converters:ClientConverter x:Key="ClientConverter"/>
+                        <converters:PriceConverter x:Key="PriceConverter"/>
+                    </ControlTemplate.Resources>
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource SellDate}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding date}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource SellBuyer}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding buyer, Converter={StaticResource ClientConverter}}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource SellRecipe}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding recipe, Converter={StaticResource RecipeNameConverter}}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource SellWeigth}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding weigth}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource SellPrice}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding price, Converter={StaticResource PriceConverter}}" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="IngradientsCalcListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate.Resources>
+                        <converters:PriceConverter x:Key="PriceConverter"/>
+                    </ControlTemplate.Resources>
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngWeigth}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Weigth}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngName}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Name}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource Price}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Price, Converter={StaticResource PriceConverter}}" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="InnerRecipesListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate.Resources>
+                        <converters:PriceConverter x:Key="PriceConverter"/>
+                    </ControlTemplate.Resources>
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngWeigth}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Weigth}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource Recipe}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding ARecipe.Name}" Foreground="White"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="IngradientsCreatingListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate.Resources>
+                        <converters:PriceConverter x:Key="PriceConverter"/>
+                    </ControlTemplate.Resources>
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngPrice}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Price , Converter={StaticResource PriceConverter}}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource IngName}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding Name}" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="RecipesListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="{Binding Name}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_DayDateForeground}"/>
+
+                            <Button Grid.Column="1" BorderThickness="0" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Delete}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="delete.png"/>
+                                </Button.Background>
+                            </Button>
+
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="RecipesForSelectListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+
+                            <Label  Content="{Binding Name}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_DayDateForeground}"/>
+
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="ClientsListBox" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="10,10,10,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource ClientName}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding name}" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="{DynamicResource ClientPhone}" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                                <Label VerticalAlignment="Center" Content="{Binding phone}" Foreground="White"/>
+                            </StackPanel>
+
+                            <Button Grid.Column="2" BorderThickness="0" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Delete}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="delete.png"/>
+                                </Button.Background>
+                            </Button>
+
+                        </Grid>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_ListBoxMouseOverBorder}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border
+                  x:Name="Border" 
+                  Grid.ColumnSpan="2"
+                  CornerRadius="0"
+                  Background="#FF3F3F3F"
+                  BorderBrush="#FF97A0A5"
+                  BorderThickness="1" />
+            <Border 
+                  Grid.Column="0"
+                  CornerRadius="0" 
+                  Margin="1" 
+                  Background="#FF3F3F3F" 
+                  BorderBrush="#FF97A0A5"
+                  BorderThickness="0,0,1,0" />
+            <Path 
+                  x:Name="Arrow"
+                  Grid.Column="1"     
+                  Fill="White"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                />
+        </Grid>
+        <!--<ControlTemplate.Triggers>
+            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="#808080" />
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                <Setter Property="Foreground" Value="#888888"/>
+                <Setter TargetName="Arrow" Property="Fill" Value="#888888" />
+            </Trigger>
+        </ControlTemplate.Triggers>-->
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+
+    <Style x:Key="comboBoxStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton 
+                            Name="ToggleButton" 
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Grid.Column="2" 
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                        </ToggleButton>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="3,3,23,3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                            Style="{x:Null}" 
+                            Template="{StaticResource ComboBoxTextBox}" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Margin="3,3,23,3"
+                            Focusable="True" 
+                            Background="#FF3F3F3F"
+                            Foreground="Green"
+                            Visibility="Hidden"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup 
+                            Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+
+                            <Grid Name="DropDown"
+                              SnapsToDevicePixels="True"                
+                              MinWidth="{TemplateBinding ActualWidth}"
+                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border 
+                                x:Name="DropDownBorder"
+                                Background="#FF3F3F3F"
+
+                                BorderThickness="1"
+                                BorderBrush="#888888"/>
+                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#888888"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEditable"  Value="true">
+                            <Setter Property="IsTabStop" Value="false"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
+    </Style>
+
+    <!-- SimpleStyles: ComboBoxItem -->
+    <Style x:Key="ComboBoxItemsss" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border Name="Border"
+                              Padding="2"
+                              SnapsToDevicePixels="true">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="#FF4F4F4F"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#888888"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>

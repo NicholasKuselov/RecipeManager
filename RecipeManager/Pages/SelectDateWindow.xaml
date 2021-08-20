@@ -1,0 +1,27 @@
+﻿<Window x:Class="RecipeManager.Pages.SelectDateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeManager.Pages" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels"
+        mc:Ignorable="d"
+        Title="SelectDateWindow" Height="150" Width="300" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodels:SelectDateWindowVM></viewmodels:SelectDateWindowVM>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style x:Key="ttt" TargetType="Calendar">
+            <Setter Property="SelectionMode" Value="SingleDate" />
+            <Setter Property="DisplayMode" Value="Decade" />
+            <Setter Property="DisplayDate" Value="" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource Color_DarkBlue1}">
+
+        <DatePicker HorizontalAlignment="Center" CalendarStyle="{StaticResource ttt}"  VerticalAlignment="Center" SelectedDate="{Binding dateFrom}" IsTodayHighlighted="True" FirstDayOfWeek="Monday" Margin="80,39,80,63" Width="134" Height="23"></DatePicker>
+        <Button Content="{DynamicResource SelectDate}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Width="75" Command="{Binding bSelectDate}"/>
+        <!--<Label Content="{DynamicResource WeekAddingDesc}"  VerticalAlignment="Top" HorizontalAlignment="Center"/>-->
+
+    </Grid>
+</Window>
