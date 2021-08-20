@@ -1,2 +1,2 @@
-# smart_timetable_pc
-Часть системы "Smart Timetable" для управления базой данных расписания и сопутствующих таблиц.
+# Recipe Manager
+A program for keeping track of recipes of a bakery, clients and sales with an automatic cost calculation function
