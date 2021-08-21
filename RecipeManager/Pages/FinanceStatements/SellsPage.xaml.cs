@@ -40,5 +40,21 @@ namespace RecipeManager.Pages.FinanceStatements
             ((TextBox)sender).Text = text;
             ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
         }
+
+        private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            string text = ((TextBox)sender).Text;
+            for (int i = text.Length - 1; i >= 0; i--)
+            {
+                if (!Char.IsDigit(text[i]) && text[i] != ',')
+                {
+                    text = text.Remove(i, 1);
+                }
+            }
+
+            ((TextBox)sender).Text = text;
+            ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
+        }
     }
 }

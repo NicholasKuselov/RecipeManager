@@ -75,7 +75,7 @@
 
     <ControlTemplate x:Key="AddInnerRecipeButton" TargetType="{x:Type Button}">
         <Border   Name="border" Background="#13d419" Padding="0" CornerRadius="5">
-            <Label Content="{DynamicResource AddInnerRecipe}" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_lb_buttonBackground}"/>
+            <Label Content="{}" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_lb_buttonBackground}"/>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">

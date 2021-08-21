@@ -40,9 +40,19 @@
             </Grid>
             <Label Grid.Row="1" Background="{DynamicResource Color_DaysColumnsBackground}" Content="{DynamicResource Ingradients}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Foreground="White" FontSize="16"/>
 
-            <ListBox Grid.Row="2" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsCalcListBox}" Background="{DynamicResource Color_DaysColumnsBackground}" BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox Grid.Column="0" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsCalcListBox}" Background="{DynamicResource Color_DaysColumnsBackground}" BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-            </ListBox>
+                </ListBox>
+                <ListBox Grid.Column="1" HorizontalAlignment="Stretch" ItemsSource="{Binding InnerRecipes}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource InnerRecipesCalcListBox}" Background="{DynamicResource Color_DaysColumnsBackground}" BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                </ListBox>
+            </Grid>
+            
         </Grid>
     </Border>
 </Page>

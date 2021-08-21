@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using RecipeManager.Controllers;
+using RecipeManager.Models;
 using RecipeManager.Models.DataBaseModels;
 using RecipeManager.Pages;
 using System;
@@ -17,7 +18,7 @@ namespace RecipeManager.ViewModels
 {
     class SellsPageVM : ViewModelBase
     {
-        
+
         public int SellsAddingPanelWidth { get; set; } = SidePanelState.Close;
         public int SellsOwerviewPanelWidth { get; set; } = SidePanelState.Close;
 
@@ -46,14 +47,31 @@ namespace RecipeManager.ViewModels
         //Add Sell Panel
         public string SellDate { get; set; } = (string)Application.Current.Resources["SelectDate"];
         public BindingList<int> RecipesHashes { get; set; } = new BindingList<int>(RecipeHandler.GetRecipesHash());
-        public int SelectedRecipeHash { get; set; }
+        public int SelectedRecipeHash { get; set; } = 0;
+
+        public string CostPrice { get; set; } = "0";
         public BindingList<Client> Clients { get; set; } = new BindingList<Client>(DataBaseHandler.DataBase.clients.ToList());
         public Client SelectedClient { get; set; }
-        public string SellWeigth { get; set; } = "";
+
+        private string _sellWeigth = "";
+        public string SellWeigth
+        {
+            get { return _sellWeigth; }
+            set
+            {
+                if (SelectedRecipeHash != 0)
+                {
+                    Recipe recipe = RecipeHandler.GetRecipeByNameHash(SelectedRecipeHash);
+                    CostPrice = (recipe.GetCostPrice(Convert.ToInt32(value))/100.0).ToString();
+                    _sellWeigth = value;
+                }
+                
+            }
+        }
         public string SellPrice { get; set; } = "";
 
         public SelectDateWindow SelectDateWindow;
-        
+
 
 
 
@@ -114,7 +132,7 @@ namespace RecipeManager.ViewModels
 
                         Task.Run(() =>
                         {
-                            for (int i = 0; i < SidePanelState.Open; i+=20)
+                            for (int i = 0; i < SidePanelState.Open; i += 20)
                             {
                                 SellsAddingPanelWidth = i;
                                 Thread.Sleep(1);

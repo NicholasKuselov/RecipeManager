@@ -17,6 +17,9 @@
     <v:String x:Key="IngWeigth">Вага (г) :</v:String>
     <v:String x:Key="IngName">Інградієнт :</v:String>
 
+    <v:String x:Key="CostPrice">Собівартість :</v:String>
+
+
     <v:String x:Key="Price">Вартість :</v:String>
     <v:String x:Key="DefaultPrice">Собівартість :</v:String>
 
@@ -47,7 +50,7 @@
     <v:String x:Key="SelectDate">Обрати дату</v:String>
     
     <!--FinanceStatements window-->
-    <v:String x:Key="FinanceWindow">Фінансовий відлік</v:String>
+    <v:String x:Key="FinanceWindow">Фінансовий звіт</v:String>
     <v:String x:Key="FSSells">Продажі</v:String>
     <v:String x:Key="FSClients">Клієнти</v:String>
     <v:String x:Key="FSAllStat">Статистика</v:String>

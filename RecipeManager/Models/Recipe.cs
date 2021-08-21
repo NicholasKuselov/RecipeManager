@@ -30,5 +30,27 @@ namespace RecipeManager.Models
                 });
             }
         }
+ 
+
+        public int GetCostPrice(int weigth)
+        {
+            int Price = 0;
+
+            double proc = (double)weigth / (double)Weigth;
+            for (int i = 0; i < Ingredients.Count; i++)
+            {
+                Ingredients[i].Weigth = (int)(Ingredients[i].Weigth * proc);
+                Price += (int)(Ingredients[i].Price * (Ingredients[i].Weigth / 100.0));
+                Ingredients[i].Price = Ingredients[i].Price * (Ingredients[i].Weigth / 100);
+            }
+
+            for (int i = 0; i < InnerRecipes.Count; i++)
+            {
+                InnerRecipes[i].Weigth = (int)(InnerRecipes[i].Weigth * proc);
+                Price += InnerRecipes[i].Price;
+                //ingredients[i].Price = ingredients[i].Price * (ingredients[i].Weigth / 100);
+            }
+            return Price;
+        }
     }
 }

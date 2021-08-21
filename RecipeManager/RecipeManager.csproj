@@ -200,6 +200,7 @@
     <Compile Include="Pages\SelectDateWindow.xaml.cs">
       <DependentUpon>SelectDateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ClientPunchaseHistoryWindowVM.cs" />
     <Compile Include="ViewModels\ClientsPageVM.cs" />
     <Compile Include="ViewModels\EntryWindowVM.cs" />
     <Compile Include="ViewModels\FinancialStatementsWindowVM.cs" />
@@ -214,6 +215,9 @@
     <Compile Include="ViewModels\SellsPageVM.cs" />
     <Compile Include="ViewModels\StatPageVM.cs" />
     <Compile Include="ViewModels\UserSettingsWindowVM.cs" />
+    <Compile Include="Windows\ClientPunchaseHistoryWindow.xaml.cs">
+      <DependentUpon>ClientPunchaseHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EntryWindow.xaml.cs">
       <DependentUpon>EntryWindow.xaml</DependentUpon>
     </Compile>
@@ -302,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Templates\UserSettingsWindow\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ClientPunchaseHistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,8 @@ namespace RecipeManager.ViewModels
     {
         public List<IngredientForRecipe> Ingredients { get; set; }
 
+        public List<InnerRecipe> InnerRecipes { get; set; }
+
         public Recipe SelectedRecipe { get; set; }
 
         public BindingList<Recipe> Recipes { get; set; }
@@ -29,6 +31,13 @@ namespace RecipeManager.ViewModels
             {
                 _needWeigth = Convert.ToInt32(value);
                 if (Ingredients != null) CalcNeedWeigth();
+                if (InnerRecipes != null) 
+                {
+                    if (InnerRecipes.Count > 0)
+                    {
+                        CalcNeedWeigthInnerRecipes();
+                    }
+                }
             }
         }
 
@@ -49,6 +58,7 @@ namespace RecipeManager.ViewModels
                     NeedWeigth = SelectedRecipe.Weigth.ToString();
 
                     Ingredients = new List<IngredientForRecipe>(GetDefaultIngradients());
+                    InnerRecipes = new List<InnerRecipe>(GetDefaultInnerRecipes());
                 }
             }
         }
@@ -64,10 +74,15 @@ namespace RecipeManager.ViewModels
             }
         }
 
+        private void CalcNeedWeigthInnerRecipes()
+        {
+
+        }
         private void CalcNeedWeigth()
         {
             Price = 0;
             List<IngredientForRecipe> ingredients = new List<IngredientForRecipe>(GetDefaultIngradients());
+            List<InnerRecipe> innerRecipes = new List<InnerRecipe>(GetDefaultInnerRecipes());
             double proc = (double)_needWeigth / (double)SelectedRecipe.Weigth;
             for (int i = 0; i < ingredients.Count; i++)
             {
@@ -75,7 +90,15 @@ namespace RecipeManager.ViewModels
                 Price += (int)(ingredients[i].Price * (ingredients[i].Weigth / 100.0));
                 ingredients[i].Price = ingredients[i].Price * (ingredients[i].Weigth / 100);
             }
+
+            for (int i = 0; i < innerRecipes.Count; i++)
+            {
+                innerRecipes[i].Weigth = (int)(innerRecipes[i].Weigth * proc);
+                Price += innerRecipes[i].Price;
+                //ingredients[i].Price = ingredients[i].Price * (ingredients[i].Weigth / 100);
+            }
             Ingredients = new List<IngredientForRecipe>(ingredients);
+            InnerRecipes = new List<InnerRecipe>(innerRecipes);
         }
 
         private List<IngredientForRecipe> GetDefaultIngradients()
@@ -89,6 +112,22 @@ namespace RecipeManager.ViewModels
                     Name = SelectedRecipe.Ingredients[i].Name,
                     Price = SelectedRecipe.Ingredients[i].Price,
                     Weigth = SelectedRecipe.Ingredients[i].Weigth
+                });
+
+
+            }
+            return ss;
+        }
+
+        private List<InnerRecipe> GetDefaultInnerRecipes()
+        {
+            List<InnerRecipe> ss = new List<InnerRecipe>();
+            for (int i = 0; i < SelectedRecipe.InnerRecipes.Count; i++)
+            {
+                ss.Add(new InnerRecipe()
+                {
+                    ARecipe = SelectedRecipe.InnerRecipes[i].ARecipe,
+                    Weigth = SelectedRecipe.InnerRecipes[i].Weigth
                 });
 
 

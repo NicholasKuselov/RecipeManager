@@ -87,6 +87,23 @@ namespace RecipeManager.Controllers
                         Recipes[i].Ingredients[j].Price = 0;
                     }
                 }
+                for (int j = 0; j < Recipes[i].InnerRecipes.Count; j++)
+                {
+                    for (int k= 0; k < Recipes[i].InnerRecipes[j].ARecipe.Ingredients.Count; k++)
+                    {
+                        try
+                        {
+                            Ingredient ingredient = DataBaseHandler.GetIngredientById(Recipes[i].InnerRecipes[j].ARecipe.Ingredients[k].id);
+                            Recipes[i].InnerRecipes[j].ARecipe.Ingredients[k].Name = ingredient.Name;
+                            Recipes[i].InnerRecipes[j].ARecipe.Ingredients[k].Price = ingredient.Price;
+                        }
+                        catch (Exception)
+                        {
+                            Recipes[i].InnerRecipes[j].ARecipe.Ingredients[k].Name = (string)Application.Current.Resources["NN"];
+                            Recipes[i].InnerRecipes[j].ARecipe.Ingredients[k].Price = 0;
+                        }
+                    }
+                }
             }
         }
 

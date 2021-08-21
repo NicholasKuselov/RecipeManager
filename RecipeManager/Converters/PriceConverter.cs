@@ -16,12 +16,12 @@ namespace RecipeManager.Converters
 
             try
             {
-                if (System.Convert.ToDouble(value) == 0) return "";
+                if (System.Convert.ToDouble(value) == 0) return "NN";
                 return System.Convert.ToDouble(value) / 100;
             }
             catch (Exception)
             {
-                return "";
+                return "error";
             }
 
         }
@@ -29,8 +29,15 @@ namespace RecipeManager.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (System.Convert.ToDouble(value) == 0) return "";
-            return (int)(System.Convert.ToDouble(value) * 100);
+            try
+            {
+                if (System.Convert.ToDouble(value) == 0) return "";
+                return (int)(System.Convert.ToDouble(value) * 100);
+            }
+            catch
+            {
+                return "";
+            }
         }
     }
 }
