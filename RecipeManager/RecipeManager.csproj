@@ -422,7 +422,7 @@
     <Resource Include="Windows\logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Styles\delete.png" />
+    <Resource Include="Resources\Images\delete.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pages\search.png" />
@@ -438,6 +438,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\deleteFocused.png" />
+    <Resource Include="Resources\Images\deletePressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.3.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.3.0\build\Fody.targets')" />

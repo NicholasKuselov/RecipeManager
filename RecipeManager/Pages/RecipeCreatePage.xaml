@@ -106,7 +106,7 @@
                 <Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource IngWeigth}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource NameTextBox}" HorizontalAlignment="Stretch" Text="{Binding IngWeigth}" TextChanged="TextBox_TextChanged" Name="tb_IngWeigth"/>
                 <Button Grid.Row="0" Grid.Column="2" Template="{DynamicResource AddIngredientButton}" FontSize="16" Command="{Binding AddIngredient}" Width="200" Height="30" HorizontalAlignment="Center"/>
-                <Button Grid.Row="1" Grid.Column="2" Template="{DynamicResource AddInnerRecipeButton}" FontSize="16" Command="{Binding bAddInnerRecipe}" Width="200" Height="30" HorizontalAlignment="Center"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="{DynamicResource AddInnerRecipe}" Template="{DynamicResource AddButtonGreen}" FontSize="16" Command="{Binding bAddInnerRecipe}" Width="200" Height="30" HorizontalAlignment="Center"/>
 
             </Grid>
             

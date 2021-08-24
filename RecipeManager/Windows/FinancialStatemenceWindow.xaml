@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeManager.Windows" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels" xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
-        Title="FinancialStatemenceWindow" Height="450" Width="800" ResizeMode="CanResizeWithGrip" Background="Red" BorderBrush="#FF8F8F8F" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AllowsTransparency="False" WindowStyle="None" SnapsToDevicePixels="False">
+        Title="{DynamicResource FinanceWindow}" Height="450" Width="800" ResizeMode="CanResizeWithGrip" Background="Red" BorderBrush="#FF8F8F8F" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AllowsTransparency="False" WindowStyle="None" SnapsToDevicePixels="False" SizeChanged="Window_SizeChanged">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -54,7 +54,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Height="30" VerticalAlignment="Top" Background="{DynamicResource Color_MainWindow}">
-            <Label Content="{DynamicResource ProgramName}" Foreground="{DynamicResource Color_ProgramNameLaberForecolor}"  Margin="10,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12"/>
+            <Label Content="{DynamicResource FinanceWindow}" Foreground="{DynamicResource Color_ProgramNameLaberForecolor}"  Margin="10,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12"/>
             <Image HorizontalAlignment="Left" Height="30" Width="30" Margin="2,0,0,0" VerticalAlignment="Top" Name="pb_Logo"/>
 
             <Button Width="50" Command="{Binding CloseWindowCommand}" Height="30" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Template="{DynamicResource ExitButton}" />
@@ -68,7 +68,7 @@
                 <StackPanel DockPanel.Dock="Top" Height="40" VerticalAlignment="Top" Background="{DynamicResource Color_MainWindow}" Orientation="Horizontal" >
                     <RadioButton Command="{Binding GoToSellsPage}" Style="{DynamicResource MainNavigationButtonAnim}" Template="{DynamicResource WithoutBackgroundAnim}"  Margin="10,0,0,0" HorizontalAlignment="Left" Content ="{DynamicResource FSSells}" Name="b_Timetable" FontSize="20" Background="{DynamicResource Color_MainNavButtons}" GroupName="NavButtonGoup" IsChecked="True"/>
                     <RadioButton Command="{Binding GoToClientsPage}" Style="{DynamicResource MainNavigationButtonAnim}"  Template="{DynamicResource WithoutBackgroundAnim}"  Margin="25,0,0,0" HorizontalAlignment="Left" Content ="{DynamicResource FSClients}" Name="b_Subjects" FontSize="20" Background="{DynamicResource Color_MainNavButtons}" GroupName="NavButtonGoup"/>
-                    <RadioButton Command="{Binding GoToStatPage}" Style="{DynamicResource MainNavigationButtonAnim}"  Template="{DynamicResource WithoutBackgroundAnim}"  Margin="25,0,0,0" HorizontalAlignment="Left" Content ="{DynamicResource FSAllStat}" Name="b_Recipes" FontSize="20" Background="{DynamicResource Color_MainNavButtons}" GroupName="NavButtonGoup"/>
+                    <RadioButton Visibility="Collapsed" Command="{Binding GoToStatPage}" Style="{DynamicResource MainNavigationButtonAnim}"  Template="{DynamicResource WithoutBackgroundAnim}"  Margin="25,0,0,0" HorizontalAlignment="Left" Content ="{DynamicResource FSAllStat}" Name="b_Recipes" FontSize="20" Background="{DynamicResource Color_MainNavButtons}" GroupName="NavButtonGoup" />
 
 
                     <!--<RadioButton Command="{Binding GoToStuffPage}" Style="{DynamicResource MainNavigationButtonAnim}"   Template="{DynamicResource WithoutBackgroundAnim}" Margin="25,0,0,0" HorizontalAlignment="Left" Content ="{DynamicResource bTeachers}" Name="b_Teachers" FontSize="20" Background="{DynamicResource Color_MainNavButtons}" GroupName="NavButtonGoup"/>-->

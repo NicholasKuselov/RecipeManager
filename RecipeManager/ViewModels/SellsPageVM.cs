@@ -23,6 +23,7 @@ namespace RecipeManager.ViewModels
         public int SellsOwerviewPanelWidth { get; set; } = SidePanelState.Close;
 
         public Visibility CloseSellsOverviewPanelButtonVisibility { get; set; } = Visibility.Collapsed;
+        public Visibility DeleteSellButtonVisibility { get; set; } = Visibility.Collapsed;
 
 
         public Client SelectedSellClient { get; set; }
@@ -37,13 +38,32 @@ namespace RecipeManager.ViewModels
                 {
                     OpenClientOverviewPanel();
                     SelectedSellClient = DataBaseHandler.GetClientById(value.buyer);
+                    DeleteSellButtonVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    DeleteSellButtonVisibility = Visibility.Collapsed;
                 }
             }
         }
-        public BindingList<SellsHistoryEntry> Sells { get; set; }
+
+        private BindingList<SellsHistoryEntry> _sells ;
+        public BindingList<SellsHistoryEntry> Sells
+        {
+            get
+            {
+                return _sells;
+            }
+            set
+            {
+                _sells = value;
+                GetStat();
+            }
+        } 
 
 
-
+        public int AllSellsCount { get; set; } = 0;
+        public int AllSellsPrice { get; set; } = 0;
         //Add Sell Panel
         public string SellDate { get; set; } = (string)Application.Current.Resources["SelectDate"];
         public BindingList<int> RecipesHashes { get; set; } = new BindingList<int>(RecipeHandler.GetRecipesHash());
@@ -62,10 +82,10 @@ namespace RecipeManager.ViewModels
                 if (SelectedRecipeHash != 0)
                 {
                     Recipe recipe = RecipeHandler.GetRecipeByNameHash(SelectedRecipeHash);
-                    CostPrice = (recipe.GetCostPrice(Convert.ToInt32(value))/100.0).ToString();
+                    CostPrice = (recipe.GetCostPrice(Convert.ToInt32(value)) / 100.0).ToString();
                     _sellWeigth = value;
                 }
-                
+
             }
         }
         public string SellPrice { get; set; } = "";
@@ -97,6 +117,8 @@ namespace RecipeManager.ViewModels
                     });
                     DataBaseHandler.DataBase.SaveChanges();
                     Sells = new BindingList<SellsHistoryEntry>(DataBaseHandler.DataBase.history.ToList());
+                    SellPrice = "";
+                    SellWeigth = "";
 
                 });
             }
@@ -107,12 +129,18 @@ namespace RecipeManager.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    //if (SelectedClient != null)
-                    //{
-                    //    //DataBaseHandler.DataBase.clients.Remove(SelectedClient);
-                    //    //DataBaseHandler.DataBase.SaveChanges();
-                    //    //Clients.Remove(SelectedClient);
-                    //}
+                    if (SelectedSells != null)
+                    {
+                        if (MessageBox.Show((string)Application.Current.Resources["DeleteSell"], (string)Application.Current.Resources["DeleteCaption"], MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+                        {
+                            DataBaseHandler.DataBase.history.Remove(SelectedSells);
+                            DataBaseHandler.DataBase.SaveChanges();
+                            Sells.Remove(SelectedSells);
+                            SellsOwerviewPanelWidth = SidePanelState.Close;
+                            GetStat();
+                        }
+                        
+                    }
 
                 });
             }
@@ -132,24 +160,26 @@ namespace RecipeManager.ViewModels
 
                         Task.Run(() =>
                         {
-                            for (int i = 0; i < SidePanelState.Open; i += 20)
+                            for (int i = 0; i < SidePanelState.Open; i += SidePanelState.Open / 40)
                             {
                                 SellsAddingPanelWidth = i;
                                 Thread.Sleep(1);
                             }
+                            SellsAddingPanelWidth = SidePanelState.Open;
                         });
                     }
                     else
                     {
                         Task.Run(() =>
                         {
-                            for (int i = SidePanelState.Open; i >= 0; i -= 20)
+                            for (int i = SidePanelState.Open; i >= 0; i -= SidePanelState.Open / 40)
                             {
                                 SellsAddingPanelWidth = i;
                                 Thread.Sleep(1);
                             }
+                            SellsAddingPanelWidth = SidePanelState.Close;
                         });
-                        SellsAddingPanelWidth = SidePanelState.Close;
+
                     }
 
                 });
@@ -214,7 +244,16 @@ namespace RecipeManager.ViewModels
             }
         }
 
-        private class SidePanelState
+        public void GetStat()
+        {
+            AllSellsCount = _sells.Count;
+            AllSellsPrice = 0;
+            for (int i = 0; i < _sells.Count; i++)
+            {
+                AllSellsPrice += _sells[i].price;
+            }
+        }
+        public class SidePanelState
         {
             //public static int Open = (int)((MainViewModel)App.Current.MainWindow.DataContext).financeStatementWindow.Width - 80;
             public static int Open = 800;

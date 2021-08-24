@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeManager.Pages" xmlns:viewmodels="clr-namespace:RecipeManager.ViewModels"
         mc:Ignorable="d"
-        Title="SelectDateWindow" Height="150" Width="300" ResizeMode="NoResize">
+        Title="{DynamicResource SelectDate}" Height="150" Width="300" ResizeMode="NoResize">
     <Window.DataContext>
         <viewmodels:SelectDateWindowVM></viewmodels:SelectDateWindowVM>
     </Window.DataContext>
@@ -17,7 +17,7 @@
             <Setter Property="DisplayDate" Value="" />
         </Style>
     </Window.Resources>
-    <Grid Background="{DynamicResource Color_DarkBlue1}">
+    <Grid>
 
         <DatePicker HorizontalAlignment="Center" CalendarStyle="{StaticResource ttt}"  VerticalAlignment="Center" SelectedDate="{Binding dateFrom}" IsTodayHighlighted="True" FirstDayOfWeek="Monday" Margin="80,39,80,63" Width="134" Height="23"></DatePicker>
         <Button Content="{DynamicResource SelectDate}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Width="75" Command="{Binding bSelectDate}"/>

@@ -34,8 +34,44 @@ namespace RecipeManager.ViewModels
         }
         public IngredientsPageVM()
         {
-            Ingredients = new BindingList<Ingredient>(DataBaseHandler.DataBase.ingredients.ToList());
+            List<Ingredient> ingredients = DataBaseHandler.DataBase.ingredients.ToList();
+            
 
+            Ingredients = new BindingList<Ingredient>(SortByName(ingredients));
+            
+        }
+
+        public List<Ingredient> SortByName(List<Ingredient> ingredients)
+        {
+            ingredients.Sort(delegate (Ingredient a, Ingredient b)
+            {
+                string first = a.Name.ToLower();
+                string second = b.Name.ToLower();
+                for (int i = 0; i < Math.Min(first.Length, second.Length); i++)
+                {
+                    int x = first[i];
+                    int y = second[i];
+                    if (x != y)
+                    {
+                        if (x > y)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+                if (first.Length < second.Length)
+                {
+                    return -1;
+                }
+
+                return 1;
+
+            });
+            return ingredients;
         }
 
         public ICommand AddIngredient
@@ -60,12 +96,34 @@ namespace RecipeManager.ViewModels
                             DataBaseHandler.DataBase.ingredients.Add(ingredient);
                             DataBaseHandler.DataBase.SaveChanges();
                             Ingredients.Add(ingredient);
+                            Ingredients = new BindingList<Ingredient>(SortByName(Ingredients.ToList()));
+                            
                         }
                         catch
                         {
                             MessageBox.Show("Error");
                         }
                     }
+                });
+            }
+        }
+
+        public ICommand UpdateIngredient
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+
+                    try
+                    {
+                        DataBaseHandler.UpdateIngredient(SelectedIngredient);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error");
+                    }
+
                 });
             }
         }
@@ -78,9 +136,14 @@ namespace RecipeManager.ViewModels
                 {
                     if (SelectedIngredient != null)
                     {
-                        DataBaseHandler.DataBase.ingredients.Remove(SelectedIngredient);
-                        DataBaseHandler.DataBase.SaveChanges();
-                        Ingredients.Remove(SelectedIngredient);
+                        if (MessageBox.Show((string)Application.Current.Resources["DeleteSelectedIngredient"] + ": " + SelectedIngredient.Name + "?", (string)Application.Current.Resources["DeleteCaption"], MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+                        {
+                            DataBaseHandler.DataBase.ingredients.Remove(SelectedIngredient);
+                            DataBaseHandler.DataBase.SaveChanges();
+                            Ingredients.Remove(SelectedIngredient);
+                        }
+
+                        
                     }
 
                 });

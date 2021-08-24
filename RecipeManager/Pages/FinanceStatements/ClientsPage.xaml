@@ -12,15 +12,29 @@
         <viewmodels:ClientsPageVM></viewmodels:ClientsPageVM>
     </Page.DataContext>
     
-    <Grid Background="{DynamicResource Color_DarkBlue1}">
+    <Grid Background="{DynamicResource Color_MainWindow}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0"  >
-            <Button Width="30" Height="30" Margin="0,0,10,0" Template="{DynamicResource CloseClientOvewviewPanelButton}" Command="{Binding bOpenClientOverviewPanel}" Visibility="{Binding CloseClientOverviewPanelButtonVisibility}"/>
-            <Button Width="30" Height="30" Margin="0,0,0,0" Command="{Binding bOpenClientAddPanel}" Template="{DynamicResource AddClientPanelButton}"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0"  >
+                <Label VerticalAlignment="Center" Content="{DynamicResource ClientsCount}" FontSize="14" Foreground="{DynamicResource Color_DayDateForeground}"/>
+                <Label VerticalAlignment="Center" Content="{Binding Clients.Count}" FontSize="14" Foreground="White"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1"  >
+                <Button Width="25" Height="25" Margin="0,0,10,0" Template="{DynamicResource DeleteButton}" Command="{Binding bDeleteClient}" Visibility="{Binding DeleteClientButtonVisibility}"/>
+                <Button Width="30" Height="30" Margin="0,0,10,0" Template="{DynamicResource CloseClientOvewviewPanelButton}" Command="{Binding bOpenClientOverviewPanel}" Visibility="{Binding CloseClientOverviewPanelButtonVisibility}"/>
+                <Button Width="30" Height="30" Margin="0,0,0,0" Command="{Binding bOpenClientAddPanel}" Template="{DynamicResource AddClientPanelButton}"/>
+            </StackPanel>
+        </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -57,24 +71,32 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Command="{Binding bAddClient}" Template="{DynamicResource AddClientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
-                    <Button Grid.Row="1" Command="{Binding bDeleteClient}" Template="{DynamicResource DeleteClientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
+                    <Button Grid.Row="1" Command="{Binding bAddClient}" Template="{DynamicResource AddClientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>
+                    <!--<Button Grid.Row="1" Command="{Binding bDeleteClient}" Template="{DynamicResource DeleteClientButton}" FontSize="16" Width="220" Height="30" Margin="0,0,0,0"/>-->
 
                 </Grid>
             </Grid>
 
+            <Grid Grid.Column="2" Background="{DynamicResource Color_WeekListPanel}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Background="{DynamicResource Color_WeekListPanel}">
+                    <Label Content="{DynamicResource ClientName}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
+                    <Label Content="{Binding SelectedClient.name}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                    <Label Content="{DynamicResource ClientPhone}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
+                    <Label Content="{Binding SelectedClient.phone}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                    <Label Content="{DynamicResource ClientContactInformation}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
+                    <Label Content="{Binding SelectedClient.contact_information}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                    <Label Content="{DynamicResource ClientComments}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
+                    <Label Content="{Binding SelectedClient.comments}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+                <Button Grid.Row="1" Width="200" Height="30" Command="{Binding bOpenClientHistoryWindow}" Content="{DynamicResource ClientHistory}" Template="{DynamicResource OpenWindowButtonTransparent}"/>
 
-            <StackPanel Orientation="Vertical" Grid.Column="2" Background="{DynamicResource Color_WeekListPanel}">
-                <Label Content="{DynamicResource ClientName}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
-                <Label Content="{Binding SelectedClient.name}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
-                <Label Content="{DynamicResource ClientPhone}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
-                <Label Content="{Binding SelectedClient.phone}" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
-                <Label Content="{DynamicResource ClientContactInformation}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
-                <Label Content="{Binding SelectedClient.contact_information}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
-                <Label Content="{DynamicResource ClientComments}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="Silver"/>
-                <Label Content="{Binding SelectedClient.comments}" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+            </Grid>
 
-            </StackPanel>
+            
 
         </Grid>
         

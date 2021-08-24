@@ -114,9 +114,18 @@ namespace RecipeManager.ViewModels
                     else
                     {
                         //int i = RecipeHandler.Recipes.FindIndex(p=> p.Name.Equals(Recipe.Name));
-                        RecipeHandler.Recipes.RemoveAll(p=> p.Name.Equals(Recipe.Name));
-                        Recipe = new Recipe() { Ingredients = this.Ingredients.ToList(), Weigth = Convert.ToInt32(RecipeWeigth), Name = RecipeName, Tag = RecipeTag, InnerRecipes = InnerRecipes.ToList() };
-                        RecipeHandler.AddRecipe(Recipe);
+                        if (!RecipeHandler.IsNameEmpty(RecipeName))
+                        {
+                            ErrorHandler.RecipeNameAlreadyExist();
+                        }
+                        else
+                        {
+                            int oldHash = Recipe.Name.GetHashCode();
+                            RecipeHandler.Recipes.RemoveAll(p => p.Name.Equals(Recipe.Name));
+                            Recipe = new Recipe() { Ingredients = this.Ingredients.ToList(), Weigth = Convert.ToInt32(RecipeWeigth), Name = RecipeName, Tag = RecipeTag, InnerRecipes = InnerRecipes.ToList() };
+                            RecipeHandler.AddRecipe(Recipe);
+                            DataBaseHandler.UpdateSellsProductHash(oldHash, RecipeName.GetHashCode());
+                        }
                     }
                 });
             }

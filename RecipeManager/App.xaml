@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/LabelsStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ListBoxesStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TextBoxesStyles.xaml"/>
-
+                <ResourceDictionary Source="Resources/Templates/MainWindow/WindowControlButtons.xaml"/>
                 <ResourceDictionary Source="Resources/Local/lang.ua-ua.xaml" />
                 <ResourceDictionary Source="Resources/Colors/MainColors.xaml"/>
                 <ResourceDictionary Source="Resources/Icons.xaml"/>

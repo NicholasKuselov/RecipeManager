@@ -57,10 +57,10 @@
                     <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="10,0,0,0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="105"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="90"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -315,15 +315,17 @@
                     <Border Name="Border" Background="{DynamicResource Color_lb_buttonBackground}" Padding="0" Margin="15,0,15,0" Height="40" HorizontalAlignment="Stretch" BorderThickness="1,1,1,1" BorderBrush="Gray" CornerRadius="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{Binding Name}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_DayDateForeground}"/>
 
-                            <Button Grid.Column="1" BorderThickness="0" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Delete}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="delete.png"/>
-                                </Button.Background>
+                            <Label Grid.Column="0" Content="{Binding Tag}" FontSize="12" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Silver"/>
+
+                            <Label Grid.Column="1" Content="{Binding Name}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_DayDateForeground}"/>
+
+                            <Button Grid.Column="2" BorderThickness="0" Width="25" Height="25" Template="{DynamicResource DeleteButton}" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Delete}">
+
                             </Button>
 
                         </Grid>
@@ -392,6 +394,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="30"/>
                             </Grid.ColumnDefinitions>
+
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Label VerticalAlignment="Center" Content="{DynamicResource ClientName}" Foreground="{DynamicResource Color_DayDateForeground}"/>
                                 <Label VerticalAlignment="Center" Content="{Binding name}" Foreground="White"/>
@@ -402,15 +405,9 @@
                                 <Label VerticalAlignment="Center" Content="{Binding phone}" Foreground="White"/>
                             </StackPanel>
 
-                            <Button Grid.Column="2" BorderThickness="0" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Delete}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="delete.png"/>
-                                </Button.Background>
-                            </Button>
-
+                            <!--<Button Grid.Column="2" Template="{DynamicResource DeleteButton}" BorderThickness="0" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding }"/>-->
                         </Grid>
                     </Border>
-
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="ListBoxItem.IsMouseOver" Value="True">
@@ -421,7 +418,6 @@
                             <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Color_lb_buttonBorderFocus}"/>
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource Color_lb_buttonBackgroundFocus}"/>
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

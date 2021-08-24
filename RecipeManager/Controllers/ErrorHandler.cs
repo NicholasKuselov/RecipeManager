@@ -52,6 +52,21 @@ namespace RecipeManager.Controllers
         {
             MessageBox.Show((string)Application.Current.Resources["ErrorNoIngredientWeigth"], (string)Application.Current.Resources["ErrorCaption"], MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public static void NoIClientName()
+        {
+            MessageBox.Show((string)Application.Current.Resources["ErrorNoClientName"], (string)Application.Current.Resources["ErrorCaption"], MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public static void NoIClientContactInformation()
+        {
+            MessageBox.Show((string)Application.Current.Resources["ErrorNoClientContact"], (string)Application.Current.Resources["ErrorCaption"], MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public static void RecipeNameAlreadyExist()
+        {
+            MessageBox.Show((string)Application.Current.Resources["ErrorRecipeNameAlreadyExist"], (string)Application.Current.Resources["ErrorCaption"], MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
 

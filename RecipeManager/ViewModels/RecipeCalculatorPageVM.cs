@@ -54,11 +54,11 @@ namespace RecipeManager.ViewModels
                 _selectedRecipeName = value;
                 SelectedRecipe = Recipes.First(p => p.Name.Equals(value));
                 if (SelectedRecipe != null)
-                {
-                    NeedWeigth = SelectedRecipe.Weigth.ToString();
-
+                {                  
                     Ingredients = new List<IngredientForRecipe>(GetDefaultIngradients());
                     InnerRecipes = new List<InnerRecipe>(GetDefaultInnerRecipes());
+
+                    NeedWeigth = SelectedRecipe.Weigth.ToString();
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace RecipeManager.ViewModels
             {
                 ingredients[i].Weigth = (int)(ingredients[i].Weigth * proc);
                 Price += (int)(ingredients[i].Price * (ingredients[i].Weigth / 100.0));
-                ingredients[i].Price = ingredients[i].Price * (ingredients[i].Weigth / 100);
+                ingredients[i].Price = (int)(ingredients[i].Price * (ingredients[i].Weigth / 100.0));
             }
 
             for (int i = 0; i < innerRecipes.Count; i++)

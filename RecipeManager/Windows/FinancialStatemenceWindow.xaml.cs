@@ -1,4 +1,5 @@
 ﻿using RecipeManager.Controllers;
+using RecipeManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace RecipeManager.Windows
         void Window1_SourceInitialized(object sender, EventArgs e)
         {
             WindowSizing.WindowInitialized(this);
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            //((SellsPageVM)((FinancialStatementsWindowVM)DataContext).sellsPage.DataContext).
+            SellsPageVM.SidePanelState.Open = Convert.ToInt32(Width);
         }
     }
 }

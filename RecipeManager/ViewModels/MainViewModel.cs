@@ -108,6 +108,7 @@ namespace RecipeManager.ViewModels
             {
                 return new RelayCommand(() =>
                 {
+                    Application.Current.Shutdown();
                     Application.Current.MainWindow.Close();
                 });
             }

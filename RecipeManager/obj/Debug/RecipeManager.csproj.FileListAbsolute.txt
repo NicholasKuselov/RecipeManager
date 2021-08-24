@@ -214,3 +214,5 @@ C:\repos\RecipeManager\RecipeManager\obj\Debug\Pages\SelectDateWindow.g.cs
 C:\repos\RecipeManager\RecipeManager\obj\Debug\Pages\SelectDateWindow.baml
 C:\repos\RecipeManager\RecipeManager\obj\Debug\Windows\RecipeSelectWindow.g.cs
 C:\repos\RecipeManager\RecipeManager\obj\Debug\Windows\RecipeSelectWindow.baml
+C:\repos\RecipeManager\RecipeManager\obj\Debug\Windows\ClientPunchaseHistoryWindow.g.cs
+C:\repos\RecipeManager\RecipeManager\obj\Debug\Windows\ClientPunchaseHistoryWindow.baml

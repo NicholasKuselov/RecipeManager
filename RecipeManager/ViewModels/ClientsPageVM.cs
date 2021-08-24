@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using RecipeManager.Controllers;
 using RecipeManager.Models.DataBaseModels;
+using RecipeManager.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace RecipeManager.ViewModels
         public int ClientOwerviewPanelWidth { get; set; } = SidePanelState.Close;
 
         public Visibility CloseClientOverviewPanelButtonVisibility { get; set; } = Visibility.Collapsed;
+        public Visibility DeleteClientButtonVisibility { get; set; } = Visibility.Collapsed;
 
         private Client _selectedClient;
         public Client SelectedClient
@@ -33,7 +35,12 @@ namespace RecipeManager.ViewModels
                 _selectedClient = value;
                 if (value != null)
                 {
+                    DeleteClientButtonVisibility = Visibility.Visible;
                     OpenClientOverviewPanel();
+                }
+                else
+                {
+                    DeleteClientButtonVisibility = Visibility.Collapsed;
                 }
             }
         }
@@ -44,7 +51,7 @@ namespace RecipeManager.ViewModels
         public string ClientContactIndormation { get; set; } = "";
         public string ClientComments { get; set; } = "";
 
-
+        public ClientPunchaseHistoryWindow ClientPunchaseHistoryWindow { get; set; }
         public ClientsPageVM()
         {
             Clients = new BindingList<Client>(DataBaseHandler.DataBase.clients.ToList());
@@ -59,15 +66,42 @@ namespace RecipeManager.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    //DataBaseHandler.DataBase.clients.Add(new Client()
-                    //{
-                    //    name = ClientName,
-                    //    comments = ClientComments,
-                    //    contact_information = ClientContactIndormation,
-                    //    phone = ClientPhone
-                    //});
-                    //DataBaseHandler.DataBase.SaveChanges();
-                    //Clients = new BindingList<Client>(DataBaseHandler.DataBase.clients.ToList());
+                    if (ClientName.Length < 2)
+                    {
+                        ErrorHandler.NoIClientName();
+                    }
+                    else if (ClientPhone.Length < 5 && ClientContactIndormation.Length < 5)
+                    {
+                        ErrorHandler.NoIClientContactInformation();
+                    }
+                    else
+                    {
+                        DataBaseHandler.DataBase.clients.Add(new Client()
+                        {
+                            name = ClientName,
+                            comments = ClientComments,
+                            contact_information = ClientContactIndormation,
+                            phone = ClientPhone
+                        });
+                        DataBaseHandler.DataBase.SaveChanges();
+                        Clients = new BindingList<Client>(DataBaseHandler.DataBase.clients.ToList());
+                        ClientName = "";
+                        ClientComments = "";
+                        ClientContactIndormation = "";
+                        ClientPhone = "";
+                    }
+                });
+            }
+        }
+
+        public ICommand bOpenClientHistoryWindow
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    ClientPunchaseHistoryWindow = new ClientPunchaseHistoryWindow();
+                    ClientPunchaseHistoryWindow.Show();
 
                 });
             }
@@ -81,9 +115,12 @@ namespace RecipeManager.ViewModels
                 {
                     if (SelectedClient != null)
                     {
-                        //DataBaseHandler.DataBase.clients.Remove(SelectedClient);
-                        //DataBaseHandler.DataBase.SaveChanges();
-                        //Clients.Remove(SelectedClient);
+                        if (MessageBox.Show((string)Application.Current.Resources["DeleteText"] + " " + SelectedClient.name + " ?", (string)Application.Current.Resources["DeleteCaption"], MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+                        {
+                            DataBaseHandler.DataBase.clients.Remove(SelectedClient);
+                            DataBaseHandler.DataBase.SaveChanges();
+                            Clients.Remove(SelectedClient);
+                        }                   
                     }
 
                 });
@@ -130,20 +167,16 @@ namespace RecipeManager.ViewModels
 
         public void OpenClientOverviewPanel()
         {
-            if (ClientOwerviewPanelWidth == SidePanelState.Close)
-            {
-                if (ClientAddingPanelWidth == SidePanelState.Open)
-                {
-                    ClientAddingPanelWidth = SidePanelState.Close;
-                }
-                ClientOwerviewPanelWidth = SidePanelState.Open;
-                CloseClientOverviewPanelButtonVisibility = Visibility.Visible;
+            ClientOwerviewPanelWidth = SidePanelState.Close;
 
-            }
-            else
+            if (ClientAddingPanelWidth == SidePanelState.Open)
             {
-                ClientOwerviewPanelWidth = SidePanelState.Close;
+                ClientAddingPanelWidth = SidePanelState.Close;
             }
+            ClientOwerviewPanelWidth = SidePanelState.Open;
+            CloseClientOverviewPanelButtonVisibility = Visibility.Visible;
+
+
         }
 
         private class SidePanelState

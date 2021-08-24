@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeManager.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace RecipeManager.Windows
         public ClientPunchaseHistoryWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += delegate { this.DragMove(); };
+            this.SourceInitialized += new EventHandler(Window1_SourceInitialized);
         }
+
+        void Window1_SourceInitialized(object sender, EventArgs e)
+        {
+            WindowSizing.WindowInitialized(this);
+        }
+
     }
 }

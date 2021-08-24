@@ -16,7 +16,7 @@ namespace RecipeManager.ViewModels
 {
     class RecipePageVM : ViewModelBase
     {
-        public BindingList<Recipe> Recipes { get; set; } = new BindingList<Recipe>(RecipeHandler.Recipes);
+        public BindingList<Recipe> Recipes { get; set; } 
 
         public BindingList<string> Tags { get; set; }
         //public List<Recipe> Recipes { get; set; } = RecipeHandler.Recipes;
@@ -53,15 +53,9 @@ namespace RecipeManager.ViewModels
 
         public RecipePageVM()
         {
-            List<string> tags = new List<string>();
+            Recipes = new BindingList<Recipe>(SortByName(RecipeHandler.Recipes));
 
-            tags.Add((string)Application.Current.Resources["RecipeTag"]);
-            for (int i = 0; i < RecipeHandler.Recipes.Count; i++)
-            {
-                if (!tags.Contains(RecipeHandler.Recipes[i].Tag.ToLower()) && !RecipeHandler.Recipes[i].Tag.Equals("")) tags.Add(RecipeHandler.Recipes[i].Tag.ToLower());
-            }
-
-            Tags = new BindingList<string>(tags);
+            GetTags();
         }
 
         private Recipe _SelectedRecipe = null;
@@ -79,17 +73,50 @@ namespace RecipeManager.ViewModels
             }
         }
 
-        public ICommand test
+        public void GetTags()
         {
-            get
+            List<string> tags = new List<string>();
+
+            tags.Add((string)Application.Current.Resources["RecipeTag"]);
+            for (int i = 0; i < RecipeHandler.Recipes.Count; i++)
             {
-                return new RelayCommand(() =>
-                {
-                    MessageBox.Show(Recipes.Count.ToString());
-                });
+                if (!tags.Contains(RecipeHandler.Recipes[i].Tag.ToLower()) && !RecipeHandler.Recipes[i].Tag.Equals("")) tags.Add(RecipeHandler.Recipes[i].Tag.ToLower());
             }
+
+            Tags = new BindingList<string>(tags);
         }
 
+        public List<Recipe> SortByName(List<Recipe> recipes)
+        {
+            recipes.Sort(delegate (Recipe a, Recipe b)
+            {
+                string first = a.Name.Trim().ToLower();
+                string second = b.Name.Trim().ToLower();
+                for (int i = 0; i < Math.Min(first.Length, second.Length); i++)
+                {
+                    int x = first[i];
+                    int y = second[i];
+                    if (x != y)
+                    {
+                        if (x > y)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+                if (first.Length < second.Length)
+                {
+                    return -1;
+                }
+
+                return 1;
+            });
+            return recipes;
+        }
         public void Search(string text, SearchTypes searchType)
         {
             if (text.Length > 0)

@@ -59,6 +59,7 @@ namespace RecipeManager.Controllers
                     Recipes.RemoveAt(i);
                     Save();
                     ((RecipePageVM)(((MainViewModel)(App.Current.MainWindow.DataContext)).recipesPage.DataContext)).Recipes = new System.ComponentModel.BindingList<Recipe>(Recipes);
+                    ((RecipePageVM)(((MainViewModel)(App.Current.MainWindow.DataContext)).recipesPage.DataContext)).GetTags();
                     return;
                 }
             }
@@ -116,7 +117,7 @@ namespace RecipeManager.Controllers
                     return Recipes[i];
                 }
             }
-            return null;
+            return new Recipe() {Name = (string)Application.Current.Resources["DeletedRecipe"] };
         }
 
         public static List<int> GetRecipesHash()
@@ -127,6 +128,15 @@ namespace RecipeManager.Controllers
                 hashes.Add(item.Name.GetHashCode());
             }
             return hashes;
+        }
+
+        public static bool IsNameEmpty(string name)
+        {
+            if (Recipes.FindAll(p=> p.Name.ToLower().Equals(name.ToLower())).Count > 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

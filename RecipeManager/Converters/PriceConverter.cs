@@ -16,14 +16,14 @@ namespace RecipeManager.Converters
 
             try
             {
-                if (System.Convert.ToDouble(value) == 0) return "NN";
-                return System.Convert.ToDouble(value) / 100;
+                if (System.Convert.ToDouble(value) == 0) return "< 0.01";
+                return (System.Convert.ToDouble(value) / 100).ToString().Replace('.',',');
             }
             catch (Exception)
             {
                 return "error";
             }
-
+            
         }
 
 

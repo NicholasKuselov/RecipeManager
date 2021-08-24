@@ -99,8 +99,20 @@ namespace RecipeManager.ViewModels
                     }
                     else
                     {
-                        Recipe = new Recipe() { Ingredients = this.Ingredients.ToList(), Weigth = Convert.ToInt32(RecipeWeigth), Name = RecipeName, Tag = RecipeTag, InnerRecipes = InnerRecipes.ToList() };
-                        RecipeHandler.AddRecipe(Recipe);
+                        if (!RecipeHandler.IsNameEmpty(RecipeName))
+                        {
+                            ErrorHandler.RecipeNameAlreadyExist();
+                        }
+                        else
+                        {
+                            Recipe = new Recipe() { Ingredients = this.Ingredients.ToList(), Weigth = Convert.ToInt32(RecipeWeigth), Name = RecipeName, Tag = RecipeTag, InnerRecipes = InnerRecipes.ToList() };
+                            RecipeHandler.AddRecipe(Recipe);
+                            Ingredients.Clear();
+                            InnerRecipes.Clear();
+                            RecipeWeigth = "";
+                            RecipeName = "";
+                            RecipeTag = "";
+                        }
                     }
                 });
             }

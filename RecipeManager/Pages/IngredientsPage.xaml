@@ -36,21 +36,37 @@
                 <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
 
+            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" >
                 <Image Height="30" Width="30" Source="search.png"/>
                 <TextBox Grid.Row="1" Style="{DynamicResource SearchTextBoxStyle}"  Text="{Binding SearchText}" Width="400" TextChanged="SearchTextBox_TextChanged"/>
             </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.Resources>
+                    <converters:PriceConverter x:Key="PriceConverter"/>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <ListBox  Grid.Column="0" SelectedItem="{Binding SelectedIngredient}" Background="{DynamicResource Color_DaysColumnsBackground}" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsCreatingListBox}"  BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                
+                </ListBox>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <Label  Content="{DynamicResource Ingradient}" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox  HorizontalAlignment="Stretch"  Style="{DynamicResource NameTextBox}" Text="{Binding SelectedIngredient.Name}"/>
+                    <Label Content="{DynamicResource IngPrice}" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox  Style="{DynamicResource NameTextBox}" HorizontalAlignment="Stretch" Text="{Binding SelectedIngredient.Price, Converter={StaticResource PriceConverter}}" TextChanged="TextBox_TextChanged"/>
+                    <Button Margin="0,30,0,0" Template="{DynamicResource AddButtonGreen}" FontSize="16" Content="{DynamicResource Update}" Command="{Binding UpdateIngredient}" Width="200" Height="40" HorizontalAlignment="Center"/>
 
-            <ListBox Grid.Row="1" Grid.Column="0" SelectedItem="{Binding SelectedIngredient}" Background="{DynamicResource Color_DaysColumnsBackground}" HorizontalAlignment="Stretch" ItemsSource="{Binding Ingredients}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource IngradientsCreatingListBox}"  BorderThickness="0,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-
-            </ListBox>
+                </StackPanel>
+            </Grid>
+            
 
             <Grid Grid.Row="2" Grid.Column="0">
                 <Grid.Resources>
-
-                        <converters:PriceConverter x:Key="PriceConverter"/>
-
-
+                    <converters:PriceConverter x:Key="PriceConverter"/>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -68,6 +84,10 @@
                 <Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource IngPrice}" HorizontalAlignment="Left" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource NameTextBox}" HorizontalAlignment="Stretch" Text="{Binding IngPrice, Converter={StaticResource PriceConverter}}" TextChanged="TextBox_TextChanged" Name="tb_IngWeigth"/>
                 <Button Grid.Row="0" Grid.Column="2" Template="{DynamicResource AddIngredientButton}" FontSize="16" Command="{Binding AddIngredient}" Width="200" Height="40" HorizontalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                
             </Grid>
 
         </Grid>

@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="ProgramVersion">v0.1</v:String>
     <v:String x:Key="ProgramName">Recipe Manager</v:String>
     <v:String x:Key="ProgramNameLocal">Менеджер рецептів</v:String>
 
@@ -12,7 +13,7 @@
 
     <v:String x:Key="Recipe">Рецепт :</v:String>
 
-
+    <v:String x:Key="DeletedRecipe">Видалений рецепт...</v:String>
     <v:String x:Key="IngPrice">Ціна (за 100 г) :</v:String>
     <v:String x:Key="IngWeigth">Вага (г) :</v:String>
     <v:String x:Key="IngName">Інградієнт :</v:String>
@@ -29,6 +30,8 @@
     <v:String x:Key="Ingradient">Інградієнт :</v:String>
     <v:String x:Key="Ingradients">Інградієнти</v:String>
     <v:String x:Key="Recipes">Рецепти</v:String>
+
+    <v:String x:Key="Update">Оновити</v:String>
 
 
     <v:String x:Key="bAddIngredient">Додати інградієнт</v:String>
@@ -49,18 +52,24 @@
 
     <v:String x:Key="SelectDate">Обрати дату</v:String>
     
+    
+    
     <!--FinanceStatements window-->
     <v:String x:Key="FinanceWindow">Фінансовий звіт</v:String>
     <v:String x:Key="FSSells">Продажі</v:String>
     <v:String x:Key="FSClients">Клієнти</v:String>
     <v:String x:Key="FSAllStat">Статистика</v:String>
     <v:String x:Key="FSSell">Продажa</v:String>
+    <!--ClientsРшыещкн window-->
+    <v:String x:Key="CHCount">Кількість замовлень :</v:String>
+    <v:String x:Key="CHAllPrice">Сумарна ціна заказів :</v:String>
 
     <!--ClientsPage window-->
+    <v:String x:Key="ClientsCount">Кількість клієнтів :</v:String>
     <v:String x:Key="ClientAdding">Додавання клієнту</v:String>
     <v:String x:Key="ClientAdd">Додати клієнта</v:String>
     <v:String x:Key="ClientDelete">Видалити клієнта</v:String>
-
+    <v:String x:Key="ClientHistory">Історія замовлень</v:String>
     <v:String x:Key="ClientName">Ім'я :</v:String>
     <v:String x:Key="ClientPhone">Номер :</v:String>
     <v:String x:Key="ClientContactInformation">Контактна інформація :</v:String>
@@ -93,12 +102,16 @@
     <v:String x:Key="bChangePassword">Змінити пароль</v:String>
 
     <!--Warnings-->
+    <v:String x:Key="WarningCaption">Видалення</v:String>
+
+    <v:String x:Key="DeleteSell">Дійсно видалити обрану продажу?</v:String>
     <v:String x:Key="DeleteCaption">Видалення</v:String>
     <v:String x:Key="DeleteRecipe">Дійсно видалити рецепт : </v:String>
+    <v:String x:Key="DeleteText">Дійсно видалити :</v:String>
 
     <!--Errors-->
     <v:String x:Key="ErrorCaption">Помилка</v:String>
-
+    <v:String x:Key="ErrorRecipeNameAlreadyExist">Рецепт з такою назвою вже існує!</v:String>
     <v:String x:Key="AuthFailcaption">Авторизація</v:String>
     <v:String x:Key="AuthFailText">Невірний пароль або логін!</v:String>
     <v:String x:Key="NewPasswordscaption">Зміна паролю</v:String>
@@ -111,6 +124,8 @@
     <v:String x:Key="ErrorNoIngredientName">Введіть назву інградієнту!</v:String>
     <v:String x:Key="ErrorNoRecipeWeigth">Введіть вагу рецепту!</v:String>
     <v:String x:Key="ErrorNoIngredientWeigth">Введіть вагу інградієнту!</v:String>
+    <v:String x:Key="ErrorNoClientName">Введіть ім'я клієнту!</v:String>
+    <v:String x:Key="ErrorNoClientContact">Введіть контактеу інформацію чи телефон клієнту!</v:String>
 
 
 

@@ -55,7 +55,21 @@
                 <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey=Color_ExitButtonBackgroundPress}"></Setter>
             </Trigger>
         </ControlTemplate.Triggers>
-    </ControlTemplate> 
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DeleteButton" TargetType="{x:Type Button}">
+        <Border   Name="border" Background="Transparent" Padding="0" CornerRadius="5">
+            <Image Name="image" Source="/RecipeManager;component/Resources/Images/delete.png"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="image" Property="Source" Value="/RecipeManager;component/Resources/Images/deleteFocused.png"></Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="image" Property="Source" Value="/RecipeManager;component/Resources/Images/deletePressed.png"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
     <ControlTemplate x:Key="AddClientPanelButton" TargetType="{x:Type Button}">
         <Border   Name="border" Background="Transparent">
@@ -70,12 +84,24 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
 
+    <ControlTemplate x:Key="OpenWindowButtonTransparent" TargetType="{x:Type Button}">
+        <Border   Name="border" Background="Transparent" Padding="0" CornerRadius="5" BorderThickness="1" BorderBrush="Silver">
+            <Label Content="{TemplateBinding Content}" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey=Color_WindowControlButtonsFocus}"></Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey=Color_WindowControlButtonsPressed}"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
-    <ControlTemplate x:Key="AddInnerRecipeButton" TargetType="{x:Type Button}">
+    <ControlTemplate x:Key="AddButtonGreen" TargetType="{x:Type Button}">
         <Border   Name="border" Background="#13d419" Padding="0" CornerRadius="5">
-            <Label Content="{}" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_lb_buttonBackground}"/>
+            <Label Content="{TemplateBinding Content}" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Color_lb_buttonBackground}"/>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
